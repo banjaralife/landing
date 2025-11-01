@@ -1,6 +1,23 @@
+'use client';
+
 import Image from "next/image";
+import { useEffect } from "react";
+
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
 
 export default function Home() {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-17676322928',
+      });
+    }
+  }, []);
+
   return (
     <div className="relative flex min-h-dvh flex-col items-center justify-center bg-brand">
       {/* Top decorations */}
