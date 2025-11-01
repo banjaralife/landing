@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { PHProvider } from "./providers";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://banjara.life"),
@@ -32,9 +33,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        {children}
-      </body>
+      <PHProvider>
+        <body className="antialiased">
+          {children}
+        </body>
+      </PHProvider>
     </html>
   );
 }
