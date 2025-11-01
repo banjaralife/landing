@@ -12,6 +12,7 @@ export default function Home() {
             width={326}
             height={421}
             className="-scale-x-100"
+            priority
           />
         </div>
         <div className="w-24 lg:w-28">
@@ -20,6 +21,7 @@ export default function Home() {
             alt="Decorations for top left"
             width={326}
             height={421}
+            priority
           />
         </div>
       </div>
@@ -33,6 +35,7 @@ export default function Home() {
             alt=""
             width={400}
             height={400}
+            priority
           />
           <Image
             src="/banjara.svg"
@@ -40,6 +43,7 @@ export default function Home() {
             width={200}
             height={200}
             className="absolute w-48"
+            priority
           />
         </div>
 
@@ -51,6 +55,7 @@ export default function Home() {
             width={300}
             height={20}
             className="w-24 md:w-30 lg:w-32"
+            priority
           />
           <h1 className="font-bold text-xl text-[#5A2313] md:text-2xl lg:text-3xl">
             Coming soon
@@ -61,6 +66,7 @@ export default function Home() {
             width={300}
             height={20}
             className="w-24 md:w-30 lg:w-32"
+            priority
           />
         </div>
       </div>
