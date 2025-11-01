@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { PHProvider } from "./providers";
 
@@ -31,10 +32,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const analyticsEnabled = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true';
+
   return (
     <html lang="en">
       <PHProvider>
         <body className="antialiased">
+          {analyticsEnabled && (
+            <>
+              <Script
+                src="https://www.googletagmanager.com/gtag/js?id=AW-17676322928"
+                strategy="afterInteractive"
+              />
+              <Script id="google-analytics" strategy="afterInteractive">
+                {`
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'AW-17676322928');
+                `}
+              </Script>
+            </>
+          )}
           {children}
         </body>
       </PHProvider>
