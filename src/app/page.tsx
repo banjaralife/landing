@@ -111,7 +111,6 @@ export default function Home() {
           contact: data.phone,
         },
         handler: async (response: RazorpayResponse) => {
-          console.log("Payment handler called with response:", response);
           try {
             // Verify payment
             const verifyResponse = await fetch("/api/razorpay/verify-payment", {
@@ -125,26 +124,20 @@ export default function Home() {
             });
 
             const verifyData = await verifyResponse.json();
-            console.log("Payment verification response:", verifyData);
 
             if (verifyData.verified) {
-              console.log("Payment verified successfully! Should redirect to:", `/success?payment_id=${response.razorpay_payment_id}&order_id=${response.razorpay_order_id}`);
-              // window.location.href = `/success?payment_id=${response.razorpay_payment_id}&order_id=${response.razorpay_order_id}`;
+              window.location.href = `/success?payment_id=${response.razorpay_payment_id}&order_id=${response.razorpay_order_id}`;
             } else {
-              console.log("Payment verification failed! Should redirect to:", `/failure?reason=verification_failed&order_id=${response.razorpay_order_id}`);
-              // window.location.href = `/failure?reason=verification_failed&order_id=${response.razorpay_order_id}`;
+              window.location.href = `/failure?reason=verification_failed&order_id=${response.razorpay_order_id}`;
             }
           } catch (error) {
             console.error("Payment verification error:", error);
-            console.log("Should redirect to: /failure?reason=verification_failed");
-            // window.location.href = `/failure?reason=verification_failed`;
+            window.location.href = `/failure?reason=verification_failed`;
           }
         },
         modal: {
           ondismiss: () => {
-            console.log("Payment modal dismissed. Should redirect to: /failure?reason=cancelled");
-            setIsProcessing(false);
-            // window.location.href = "/failure?reason=cancelled";
+            window.location.href = "/failure?reason=cancelled";
           },
         },
         theme: {
@@ -156,9 +149,7 @@ export default function Home() {
       razorpay.open();
     } catch (error) {
       console.error("Order creation error:", error);
-      console.log("Should redirect to: /failure?reason=error");
-      setIsProcessing(false);
-      // window.location.href = "/failure?reason=error";
+      window.location.href = "/failure?reason=error";
     }
   };
 
