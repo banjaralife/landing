@@ -16,6 +16,15 @@ const nextConfig: NextConfig = {
       ],
     };
   },
+  async redirects() {
+    return [
+      {
+        source: '/b/companion',
+        destination: '/?utm_source=companion-brochure&utm_version=1',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
